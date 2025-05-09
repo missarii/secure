@@ -82,7 +82,7 @@ app.post('/submit-form', async (req, res) => {
     // console.log('Decrypted password:', stored.password);
 
     // Redirect on success
-    res.redirect('https://forms.gle/AsHpQeqPmvRD67tq9');
+    res.redirect('https://forms.gle/Pi2SW3TMmmJ7RoJH8');
   } catch (error) {
     console.error('Error saving data to MongoDB:', error);
     res
